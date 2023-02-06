@@ -4,7 +4,7 @@ class ApplicationService
   extend Dry::Initializer
 
   class << self
-    ruby2_keywords def call(*args)
+    def call(*args)
       new(*args).call
     end
   end

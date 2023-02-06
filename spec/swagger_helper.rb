@@ -22,24 +22,12 @@ RSpec.configure do |config|
         version: 'v1'
       },
       paths: {},
-      components: {
-        securitySchemes: {
-          Bearer: {
-            description: 'JWT key necessary to use API calls',
-            type: :apiKey,
-            name: 'Authorization',
-            in: :header
-          }
-        },
-        schemas: {},
-        included: {}
-      },
       servers: [
         {
-          url: ENV.fetch('ROUTES_HOST', nil),
+          url: ENV.fetch('ROUTES_HOST', 'http://127.0.0.1:3000'),
           variables: {
             defaultHost: {
-              default: ENV.fetch('ROUTES_HOST', nil)
+              default: ENV.fetch('ROUTES_HOST', 'http://127.0.0.1:3000')
             }
           }
         }

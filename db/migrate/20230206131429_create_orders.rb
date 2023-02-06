@@ -9,7 +9,5 @@ class CreateOrders < ActiveRecord::Migration[7.0]
       t.references :order
       t.timestamps
     end
-
-    add_index :dish_ingredients, %i[dish_id ingredient_id], unique: true
   end
 end

@@ -8,5 +8,11 @@ module Api
 
       render_ok
     end
+
+    def index
+      result = Orders::Index.call
+
+      render_result(result, Orders::IndexBlueprint)
+    end
   end
 end

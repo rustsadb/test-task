@@ -1,0 +1,42 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+paths:
+  "/api/orders":
+    post:
+      summary: Create order by excluded ingredients
+      tags:
+      - Orders
+      parameters: []
+      responses:
+        '200':
+          description: created order with all dishes
+        '422':
+          description: invalid parameter
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                excluded_ingredients:
+                  type: array
+                  example:
+                  - тунец
+                  - курага
+              required:
+              - excluded_ingredients
+    get:
+      summary: Get dishes name and count of all orders
+      tags:
+      - Orders
+      responses:
+        '200':
+          description: dish name and count showed
+servers:
+- url: http://127.0.0.1:3000
+  variables:
+    defaultHost:
+      default: http://127.0.0.1:3000

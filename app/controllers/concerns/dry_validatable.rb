@@ -8,7 +8,7 @@ module DryValidatable
 
     validation_result = form.new.call(params[key] || params)
 
-    raise ::Api::UnprocessableEntityExceptionError, validation_result.errors.to_h unless validation_result.success?
+    raise Api::UnprocessableEntity, validation_result.errors.to_h unless validation_result.success?
 
     validation_result.to_h
   end
