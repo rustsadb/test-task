@@ -3,9 +3,9 @@
 module Orders
   class Index < ApplicationService
     def call
-      Dish.joins(:dish_orders)
+      Dish.left_joins(:dish_orders)
           .group(:name)
-          .select('dishes.name, count(*) as count')
+          .select('dishes.name, count(dish_orders.id) as count')
           .order('count desc')
     end
   end

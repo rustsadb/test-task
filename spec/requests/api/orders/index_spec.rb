@@ -27,8 +27,16 @@ RSpec.describe 'api/orders', type: :request do
 
       response '200', 'dish name and count showed' do
         run_test! do |_response|
-          expect(response_body.pluck('name')).to eq [dish1, dish2, dish3].map(&:name)
-          expect(response_body.pluck('count')).to eq([dish1, dish2, dish3].map { |d| d.dish_orders.count })
+          # Выведутся все блюда и количество заказов по каждому
+          expect(response_body.size).to eq Dish.all.count
+          expect(response_body.first['name']).to eq dish1.name
+          expect(response_body.first['count']).to eq dish1.orders.count # 3 заказа
+          expect(response_body.second['name']).to eq dish2.name
+          expect(response_body.second['count']).to eq dish2.orders.count # 2 заказа
+          expect(response_body.third['name']).to eq dish3.name
+          expect(response_body.third['count']).to eq dish3.orders.count # 1 заказа
+          # Все остальные отображаются с 0 количеством
+          expect(response_body[3..].all? { |dish| dish['count'] == 0 }).to eq true
         end
       end
     end
