@@ -10,8 +10,8 @@ default: &default
   encoding: unicode
   timeout: 5000
   host: localhost
-  username:
-  password:
+  username: 
+  password: 
   port: 5432
 
 development:
